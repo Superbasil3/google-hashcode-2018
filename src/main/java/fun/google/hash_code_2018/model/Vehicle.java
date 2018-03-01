@@ -1,5 +1,8 @@
 package fun.google.hash_code_2018.model;
 
+import fun.google.hash_code_2018.file_parser.ReadFile;
+import fun.google.hash_code_2018.main;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -61,7 +64,6 @@ public class Vehicle {
 
     private int calculateScore(int currentStep, int remainingSteps, Ride ride) {
         int timeToGoToRide = timeToGoTo(ride);
-        int timeToWaitOnPlace = ride.getEarliestStart() - (currentStep + timeToGoToRide);
         int totalRideDuration = timeToGoToRide + ride.getDuration();
         if (totalRideDuration > remainingSteps) {
             return -1;
@@ -70,7 +72,13 @@ public class Vehicle {
             return -1;
         }
 
-        return Math.abs(timeToWaitOnPlace);
+//        if (ReadFile.bonus > 200) {
+//            return ride.getEarliestStart() - (timeToGoToRide - currentStep);
+//        }
+
+        int maxBonus = Math.abs(ride.getEarliestStart() - (currentStep + timeToGoToRide));
+        return maxBonus;
+        //return maxBonus + Math.max(ride.getEarliestStart(), (currentStep + timeToGoToRide)) + ride.getDuration();
     }
 
     public void affect(RideScore rideScore, List<Ride> listRides) {
@@ -97,6 +105,7 @@ public class Vehicle {
     }
 
     public String getStringToFile() {
-        return rides.size() + " " + rides.stream().map(ride -> String.valueOf(ride.getRideId())).collect(Collectors.joining(" "));
+        int sum = rides.stream().mapToInt(Ride::getSize).sum();
+        return sum + " " + rides.stream().map(Ride::displayRideId).collect(Collectors.joining(" "));
     }
 }

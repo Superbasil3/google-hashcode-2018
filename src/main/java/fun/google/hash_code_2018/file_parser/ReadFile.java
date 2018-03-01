@@ -1,6 +1,7 @@
 package fun.google.hash_code_2018.file_parser;
 
 import fun.google.hash_code_2018.model.Maps;
+import fun.google.hash_code_2018.model.MetaRide;
 import fun.google.hash_code_2018.model.Ride;
 
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import java.util.stream.Stream;
 
 public class ReadFile {
 
+    public static int bonus = 0;
 
     public static Map<String, Maps> getFileFromPath() throws IOException, URISyntaxException {
         Map<String, Maps> holder = new HashMap<>();
@@ -46,16 +49,32 @@ public class ReadFile {
             }
             System.out.println((System.currentTimeMillis() - timeStart) / 1000 + " seconds to parse file " + filename);
 
-//            maps.getListRides().parallelStream().forEach(r -> {
-//                maps.getListRides().forEach(r2 -> {
-//                    int durationY = (r.getFinishY() > r2.getStartB()) ? (r.getFinishY() - r2.getStartB()) :  r2.getStartB() - r.getFinishY();
-//                    int durationX = (r.getFinishX() > r2.getStartA()) ? (r.getFinishX() - r2.getStartA()) :  r2.getStartA() - r.getFinishX();
-//                    int duration = durationX + durationY;
-//                    if (duration < 2) {
-//                        System.out.println("found");
-//                    }
-//                });
-//            });
+            bonus = maps.getBonus();
+
+            List<Ride> ridesToRemove = new ArrayList<>();
+            List<MetaRide> metaRidesFounds = new ArrayList<>();
+            /*maps.getListRides().parallelStream().forEach(r -> {
+                maps.getListRides().forEach(r2 -> {
+                    if (ridesToRemove.contains(r) || ridesToRemove.contains(r2)) {
+                        return;
+                    }
+
+                    int durationY = (r.getFinishY() > r2.getStartB()) ? (r.getFinishY() - r2.getStartB()) :  r2.getStartB() - r.getFinishY();
+                    int durationX = (r.getFinishX() > r2.getStartA()) ? (r.getFinishX() - r2.getStartA()) :  r2.getStartA() - r.getFinishX();
+                    int duration = durationX + durationY;
+                    if (duration < (maps.getColumns() / 100)) {
+                        int timeDifference = r2.getEarliestStart() - (r.getEarliestStart() + r.getDuration() + duration);
+                        if (timeDifference > 0 & timeDifference < 10) {
+                            MetaRide metaRide = new MetaRide(r, r2);
+                            ridesToRemove.add(r);
+                            ridesToRemove.add(r2);
+                            metaRidesFounds.add(metaRide);
+                        }
+                    }
+                });
+            });*/
+            maps.getListRides().removeAll(ridesToRemove);
+            maps.getListRides().addAll(metaRidesFounds);
 
             for (int i = 0; i < maps.getSteps(); i++) {
                 // Select next ride

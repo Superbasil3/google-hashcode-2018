@@ -2,10 +2,10 @@ package fun.google.hash_code_2018.model;
 
 public class Ride {
     private int rideId;
-    private int startA;
-    private int startB;
-    private int finishX;
-    private int finishY;
+    protected int startA;
+    protected int startB;
+    protected int finishX;
+    protected int finishY;
     private int earliestStart;
     private int latestFinish;
     private final int duration;
@@ -18,6 +18,19 @@ public class Ride {
         this.finishY = Integer.parseInt(finishY);
         this.earliestStart = Integer.parseInt(earliestStart);
         this.latestFinish = Integer.parseInt(latestFinish);
+
+        int durationY = (this.finishY > this.startB) ? (this.finishY - this.startB) :  this.startB - this.finishY;
+        int durationX = (this.finishX > this.startA) ? (this.finishX - this.startA) :  this.startA - this.finishX;
+        this.duration = durationY + durationX;
+    }
+
+    public Ride(int startA, int startB, int finishX, int finishY, int earliestStart, int latestFinish) {
+        this.startA = startA;
+        this.startB = startB;
+        this.finishX = finishX;
+        this.finishY = finishY;
+        this.earliestStart = earliestStart;
+        this.latestFinish = latestFinish;
 
         int durationY = (this.finishY > this.startB) ? (this.finishY - this.startB) :  this.startB - this.finishY;
         int durationX = (this.finishX > this.startA) ? (this.finishX - this.startA) :  this.startA - this.finishX;
@@ -94,5 +107,13 @@ public class Ride {
 
     public void setRideId(int rideId) {
         this.rideId = rideId;
+    }
+
+    public String displayRideId() {
+        return String.valueOf(rideId);
+    }
+
+    public int getSize() {
+        return 1;
     }
 }
