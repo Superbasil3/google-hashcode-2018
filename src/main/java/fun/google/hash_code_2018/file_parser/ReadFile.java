@@ -1,6 +1,7 @@
 package fun.google.hash_code_2018.file_parser;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,11 +14,11 @@ import java.util.stream.Stream;
 public class ReadFile {
 
 
-    public static Map<String, Object> getFileFromPath(String pathFile) throws IOException {
+    public static Map<String, Object> getFileFromPath() throws IOException, URISyntaxException {
         Map<String, Object> holder = new HashMap<>();
 
-        List<Path> paths = Files.find(Paths.get(pathFile), 5, (path, attr) -> path.toString().toLowerCase().endsWith(".in"))
-                .sorted((path2,path1) -> path1.getFileName().toString().compareTo(path2.getFileName().toString()))
+        List<Path> paths = Files.find(Paths.get(ClassLoader.getSystemResource("inputs").toURI()), 5, (path, attr) -> path.toString().toLowerCase().endsWith(".in"))
+                .sorted((path2, path1) -> path1.getFileName().toString().compareTo(path2.getFileName().toString()))
                 .collect(Collectors.toList());
         for (Path file : paths) {
             String filename = file.getFileName().toString();
@@ -31,9 +32,9 @@ public class ReadFile {
                     } else {
 
                     }
-               });
+                });
 
-                holder.put(filename,filename);
+                holder.put(filename, filename);
             } catch (IOException e) {
                 e.printStackTrace();
             }

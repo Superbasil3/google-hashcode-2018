@@ -9,13 +9,9 @@ public class main {
 
 
     public static void main(String[] args) throws Exception {
-        String pathFoler = "E:\\Workspace\\Toolbox\\hash_code_2018\\ressources\\";
-        Map<String, Object> stringObjectMap = ReadFile.getFileFromPath(pathFoler);
+        Map<String, Object> stringObjectMap = ReadFile.getFileFromPath();
 
 
-
-
-
-        WriteFile.writeFileToPath(pathFoler,stringObjectMap);
+        WriteFile.writeFileToPath(stringObjectMap);
     }
 }

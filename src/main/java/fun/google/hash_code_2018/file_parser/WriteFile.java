@@ -7,12 +7,12 @@ import java.util.Map;
 
 public class WriteFile {
 
-    public static void writeFileToPath(String path, Map<String, Object> resultObject) throws IOException {
+    public static void writeFileToPath(Map<String, Object> resultObject) throws IOException {
         try {
             for (Map.Entry entry : resultObject.entrySet()) {
                 long timeStart = System.currentTimeMillis();
 
-                PrintWriter fileResult = new PrintWriter(new FileWriter(path + "out\\" + entry.getKey().toString().replace("in","out")));
+                PrintWriter fileResult = new PrintWriter(new FileWriter("target\\output" + entry.getKey().toString().replace("in","out")));
 
                 writeAnswerToFile(fileResult, entry.getValue());
                 fileResult.close();
