@@ -1,4 +1,4 @@
-package file_parser;
+package fun.google.hash_code_2018.file_parser;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,7 +1,5 @@
-package file_parser;
+package fun.google.hash_code_2018.file_parser;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ReadFile {
 
@@ -21,16 +20,18 @@ public class ReadFile {
                 .collect(Collectors.toList());
         for (Path file : paths) {
             String filename = file.getFileName().toString();
+            long timeStart = System.currentTimeMillis();
 
-            try (BufferedReader br = new BufferedReader(new FileReader(file.toAbsolutePath().toString()))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    System.out.println(line);
-                }
-                holder.put(filename, "TOTO");
+            try (Stream<String> stream = Files.lines(Paths.get(file.toString()))) {
+
+                stream.forEach(System.out::println);
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            System.out.println((System.currentTimeMillis() - timeStart) / 1000 + "second to parse file " + filename);
 
 
         }

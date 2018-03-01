@@ -1,5 +1,7 @@
-import file_parser.ReadFile;
-import file_parser.WriteFile;
+package fun.google.hash_code_2018;
+
+import fun.google.hash_code_2018.file_parser.ReadFile;
+import fun.google.hash_code_2018.file_parser.WriteFile;
 
 import java.util.Map;
 
