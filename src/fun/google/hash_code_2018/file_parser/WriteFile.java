@@ -17,7 +17,7 @@ public class WriteFile {
                 writeAnswerToFile(fileResult, entry.getValue());
                 fileResult.close();
 
-                System.out.println((System.currentTimeMillis() - timeStart) / 1000 + "second to write file " + entry.getKey().toString().replace("in","out"));
+                System.out.println((System.currentTimeMillis() - timeStart) / 1000 + " seconds to write file " + entry.getKey().toString().replace("in","out"));
             }
         } catch (Exception e) {
 
