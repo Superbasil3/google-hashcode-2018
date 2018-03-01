@@ -7,7 +7,7 @@ public class Ride {
     private int finishY;
     private int earliestStart;
     private int latestFinish;
-    private int duration;
+    private final int duration;
 
     public Ride(String startA, String startB, String finishX, String finishY, String earliestStart, String latestFinish) {
         this.startA = Integer.parseInt(startA);
@@ -68,5 +68,13 @@ public class Ride {
 
     public void setLatestFinish(int latestFinish) {
         this.latestFinish = latestFinish;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public int getRideId() {
+        return 0;
     }
 }

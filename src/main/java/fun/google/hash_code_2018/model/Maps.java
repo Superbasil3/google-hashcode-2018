@@ -13,13 +13,14 @@ public class Maps {
     private int bonus;
     private int steps;
 
-    private List<Ride> listRides = new ArrayList<>();
+    private final List<Ride> listRides = new ArrayList<>();
+    private final List<Vehicle> listVehicles = new ArrayList<>();
 
     public Maps() {
 
     }
 
-    public Maps(String rows, String columns, String vehicles, String rides, String bonus, String steps) {
+    public void update(String rows, String columns, String vehicles, String rides, String bonus, String steps) {
         this.rows =  Integer.parseInt(rows);
         this.columns =Integer.parseInt(columns);
         this.vehicles =Integer.parseInt(vehicles);
@@ -27,9 +28,10 @@ public class Maps {
         this.bonus =Integer.parseInt(bonus);
         this.steps =Integer.parseInt(steps);
         initialized = true;
+        for (int i = 0; i < this.vehicles; i++) {
+            this.listVehicles.add(new Vehicle(vehicleId));
+        }
     }
-
-
 
     public int getRows() {
         return rows;
@@ -87,11 +89,12 @@ public class Maps {
         listRides.add(ride);
     }
 
-    public void setListRides(List<Ride> listRides) {
-        this.listRides = listRides;
+    public List<Vehicle> getListVehicles() {
+        return listVehicles;
     }
 
     public boolean initialized() {
         return initialized;
     }
+
 }
