@@ -3,6 +3,7 @@ package fun.google.hash_code_2018.file_parser;
 import fun.google.hash_code_2018.model.Maps;
 import fun.google.hash_code_2018.model.Ride;
 import fun.google.hash_code_2018.model.RideScore;
+import fun.google.hash_code_2018.model.Vehicle;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -48,14 +49,13 @@ public class ReadFile {
             System.out.println((System.currentTimeMillis() - timeStart) / 1000 + " seconds to parse file " + filename);
 
             for (int i = 0; i < maps.getSteps(); i++) {
+                // Select next ride
                 maps.getListVehicles().forEach(v -> v.calculateScore(maps.getListRides()));
                 maps.getListVehicles().forEach(v -> {
                     Optional<RideScore> firstAvailableRide = v.getRideScores().stream().filter(rs -> rs.getRide().isAvailable()).findFirst();
                     firstAvailableRide.ifPresent(v::affect);
                 });
-                System.out.println(i);
             }
-
         }
         return holder;
     }

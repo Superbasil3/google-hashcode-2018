@@ -16,7 +16,7 @@ public class main {
         Map<String, Maps> stringObjectMap = ReadFile.getFileFromPath();
 
 
-//        WriteFile.writeFileToPath(stringObjectMap);
+        WriteFile.writeFileToPath(stringObjectMap);
 //        JavaZip.zipFile();
     }
 }

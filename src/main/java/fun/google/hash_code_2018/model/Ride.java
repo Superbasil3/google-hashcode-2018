@@ -90,4 +90,6 @@ public class Ride {
     public boolean isAvailable() {
         return affectedVehicle == null;
     }
+
+
 }

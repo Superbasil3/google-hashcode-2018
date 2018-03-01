@@ -29,7 +29,7 @@ public class Maps {
         this.steps =Integer.parseInt(steps);
         initialized = true;
         for (int i = 0; i < this.vehicles; i++) {
-            this.listVehicles.add(new Vehicle(i));
+            this.listVehicles.add(new Vehicle(i + 1));
         }
     }
 
