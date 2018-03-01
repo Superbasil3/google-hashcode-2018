@@ -70,7 +70,7 @@ public class Vehicle {
             return -1;
         }
 
-        return Math.abs(timeToWaitOnPlace) + ride.getLatestFinish();
+        return Math.abs(timeToWaitOnPlace);
     }
 
     public void affect(RideScore rideScore, List<Ride> listRides) {
@@ -80,6 +80,8 @@ public class Vehicle {
         int timeToDestination = timeToGoTo(rideScore.getRide());
         int pickUpTime = Math.max(timeToDestination, rideScore.getRide().getEarliestStart());
         stepBusy = pickUpTime + rideScore.getRide().getDuration();
+        x = rideScore.getRide().getFinishX();
+        y = rideScore.getRide().getFinishY();
 
         listRides.remove(rideScore.getRide());
     }

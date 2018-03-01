@@ -46,6 +46,17 @@ public class ReadFile {
             }
             System.out.println((System.currentTimeMillis() - timeStart) / 1000 + " seconds to parse file " + filename);
 
+//            maps.getListRides().parallelStream().forEach(r -> {
+//                maps.getListRides().forEach(r2 -> {
+//                    int durationY = (r.getFinishY() > r2.getStartB()) ? (r.getFinishY() - r2.getStartB()) :  r2.getStartB() - r.getFinishY();
+//                    int durationX = (r.getFinishX() > r2.getStartA()) ? (r.getFinishX() - r2.getStartA()) :  r2.getStartA() - r.getFinishX();
+//                    int duration = durationX + durationY;
+//                    if (duration < 2) {
+//                        System.out.println("found");
+//                    }
+//                });
+//            });
+
             for (int i = 0; i < maps.getSteps(); i++) {
                 // Select next ride
                 int remainingSteps = maps.getSteps() - i;
