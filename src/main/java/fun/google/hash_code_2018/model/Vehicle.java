@@ -39,7 +39,7 @@ public class Vehicle {
         this.y = y;
     }
 
-    public void calculateScore(List<Ride> listRides) {
+    public void calculateScores(int currentStep, int remainingSteps, List<Ride> listRides) {
         rideScores.clear();
         if (!available()) {
             stepBusy--;
@@ -47,22 +47,39 @@ public class Vehicle {
         }
 
         listRides.forEach(r -> {
-            RideScore rideScore = new RideScore();
-            rideScore.setVehicleId(vehicleId);
-            rideScore.setRide(r);
-            rideScore.setScore(r.getEarliestStart());
-            rideScores.add(rideScore);
+            int score = calculateScore(currentStep, remainingSteps, r);
+            if (score >= 0) {
+                RideScore rideScore = new RideScore();
+                rideScore.setVehicleId(vehicleId);
+                rideScore.setRide(r);
+                rideScore.setScore(score);
+                rideScores.add(rideScore);
+            }
         });
         rideScores.sort(Comparator.comparingInt(RideScore::getScore));
     }
 
-    public void affect(RideScore rideScore) {
+    private int calculateScore(int currentStep, int remainingSteps, Ride ride) {
+        int timeToGoToRide = timeToGoTo(ride);
+        int totalRideDuration = timeToGoToRide + ride.getDuration();
+        if (totalRideDuration > remainingSteps) {
+            return -1;
+        }
+        if (currentStep + totalRideDuration > ride.getLatestFinish()) {
+            return -1;
+        }
+        return ride.getEarliestStart();
+    }
+
+    public void affect(RideScore rideScore, List<Ride> listRides) {
         rides.add(rideScore.getRide());
         rideScore.getRide().setAffectedVehicle(this);
 
         int timeToDestination = timeToGoTo(rideScore.getRide());
         int pickUpTime = Math.max(timeToDestination, rideScore.getRide().getEarliestStart());
         stepBusy = pickUpTime + rideScore.getRide().getDuration();
+
+        listRides.remove(rideScore.getRide());
     }
 
     public boolean available() {
