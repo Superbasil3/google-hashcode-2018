@@ -8,6 +8,15 @@ public class Ride {
     private int earliestStart;
     private int latestFinish;
 
+    public Ride(String startA, String startB, String finishX, String finishY, String earliestStart, String latestFinish) {
+        this.startA = Integer.parseInt(startA);
+        this.startB = Integer.parseInt(startB);
+        this.finishX = Integer.parseInt(finishX);
+        this.finishY = Integer.parseInt(finishY);
+        this.earliestStart = Integer.parseInt(earliestStart);
+        this.latestFinish = Integer.parseInt(latestFinish);
+    }
+
     public int getStartA() {
         return startA;
     }
