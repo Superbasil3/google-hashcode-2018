@@ -2,7 +2,6 @@ package fun.google.hash_code_2018.file_parser;
 
 import fun.google.hash_code_2018.model.Maps;
 import fun.google.hash_code_2018.model.Ride;
-import fun.google.hash_code_2018.model.RideScore;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -12,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -54,10 +52,9 @@ public class ReadFile {
                 int currentStep = i;
                 maps.getListVehicles().parallelStream().forEach(v -> v.calculateScores(currentStep, remainingSteps, maps.getListRides()));
                 maps.getListVehicles().forEach(v -> {
-                    Optional<RideScore> firstAvailableRide = v.getRideScores().stream().filter(rs -> rs.getRide().isAvailable()).findFirst();
-                    firstAvailableRide.ifPresent(rs -> {
-                        v.affect(rs, maps.getListRides());
-                    });
+                    v.getRideScores().stream().filter(rs -> rs.getRide().isAvailable())
+                            .findFirst()
+                            .ifPresent(rs -> v.affect(rs, maps.getListRides()));
                 });
             }
         }

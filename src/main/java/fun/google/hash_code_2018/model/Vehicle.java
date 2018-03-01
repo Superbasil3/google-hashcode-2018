@@ -61,6 +61,7 @@ public class Vehicle {
 
     private int calculateScore(int currentStep, int remainingSteps, Ride ride) {
         int timeToGoToRide = timeToGoTo(ride);
+        int timeToWaitOnPlace = ride.getEarliestStart() - (currentStep + timeToGoToRide);
         int totalRideDuration = timeToGoToRide + ride.getDuration();
         if (totalRideDuration > remainingSteps) {
             return -1;
@@ -68,7 +69,8 @@ public class Vehicle {
         if (currentStep + totalRideDuration > ride.getLatestFinish()) {
             return -1;
         }
-        return ride.getEarliestStart();
+
+        return Math.abs(timeToWaitOnPlace) + ride.getLatestFinish();
     }
 
     public void affect(RideScore rideScore, List<Ride> listRides) {
