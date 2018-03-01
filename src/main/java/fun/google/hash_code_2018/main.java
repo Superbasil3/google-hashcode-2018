@@ -1,5 +1,8 @@
 package fun.google.hash_code_2018;
 
+
+
+import fun.google.hash_code_2018.file_parser.JavaZip;
 import fun.google.hash_code_2018.file_parser.ReadFile;
 import fun.google.hash_code_2018.file_parser.WriteFile;
 
@@ -13,5 +16,6 @@ public class main {
 
 
         WriteFile.writeFileToPath(stringObjectMap);
+        JavaZip.zipFile();
     }
 }
