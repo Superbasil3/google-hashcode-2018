@@ -7,6 +7,7 @@ public class Ride {
     private int finishY;
     private int earliestStart;
     private int latestFinish;
+    private int duration;
 
     public Ride(String startA, String startB, String finishX, String finishY, String earliestStart, String latestFinish) {
         this.startA = Integer.parseInt(startA);
@@ -15,6 +16,10 @@ public class Ride {
         this.finishY = Integer.parseInt(finishY);
         this.earliestStart = Integer.parseInt(earliestStart);
         this.latestFinish = Integer.parseInt(latestFinish);
+
+        int durationY = (this.finishY > this.startB) ? (this.finishY - this.startB) :  this.startB - this.finishY;
+        int durationX = (this.finishX > this.startA) ? (this.finishX - this.startA) :  this.startA - this.finishX;
+        this.duration = durationY + durationX;
     }
 
     public int getStartA() {
