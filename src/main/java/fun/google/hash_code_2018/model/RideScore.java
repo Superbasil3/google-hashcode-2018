@@ -1,16 +1,16 @@
 package fun.google.hash_code_2018.model;
 
 public class RideScore {
-    private int rideId;
+    private Ride ride;
     private int vehicleId;
     private int score;
 
-    public int getRideId() {
-        return rideId;
+    public Ride getRide() {
+        return ride;
     }
 
-    public void setRideId(int rideId) {
-        this.rideId = rideId;
+    public void setRide(Ride ride) {
+        this.ride = ride;
     }
 
     public int getVehicleId() {

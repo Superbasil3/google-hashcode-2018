@@ -9,10 +9,10 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,6 +49,10 @@ public class ReadFile {
 
             for (int i = 0; i < maps.getSteps(); i++) {
                 maps.getListVehicles().forEach(v -> v.calculateScore(maps.getListRides()));
+                maps.getListVehicles().forEach(v -> {
+                    Optional<RideScore> firstAvailableRide = v.getRideScores().stream().filter(rs -> rs.getRide().isAvailable()).findFirst();
+                    firstAvailableRide.ifPresent(v::affect);
+                });
                 System.out.println(i);
             }
 

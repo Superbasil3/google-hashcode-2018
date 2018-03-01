@@ -8,6 +8,7 @@ public class Ride {
     private int earliestStart;
     private int latestFinish;
     private final int duration;
+    private Vehicle affectedVehicle;
 
     public Ride(String startA, String startB, String finishX, String finishY, String earliestStart, String latestFinish) {
         this.startA = Integer.parseInt(startA);
@@ -76,5 +77,17 @@ public class Ride {
 
     public int getRideId() {
         return 0;
+    }
+
+    public Vehicle getAffectedVehicle() {
+        return affectedVehicle;
+    }
+
+    public void setAffectedVehicle(Vehicle affectedVehicle) {
+        this.affectedVehicle = affectedVehicle;
+    }
+
+    public boolean isAvailable() {
+        return affectedVehicle == null;
     }
 }
