@@ -51,7 +51,7 @@ public class ReadFile {
 
             for (int i = 0; i < maps.getSteps(); i++) {
                 // Select next ride
-                maps.getListVehicles().forEach(v -> v.calculateScore(maps.getListRides()));
+                maps.getListVehicles().parallelStream().forEach(v -> v.calculateScore(maps.getListRides()));
                 maps.getListVehicles().forEach(v -> {
                     Optional<RideScore> firstAvailableRide = v.getRideScores().stream().filter(rs -> rs.getRide().isAvailable()).findFirst();
                     firstAvailableRide.ifPresent(v::affect);

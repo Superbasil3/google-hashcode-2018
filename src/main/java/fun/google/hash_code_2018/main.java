@@ -17,6 +17,5 @@ public class main {
 
 
         WriteFile.writeFileToPath(stringObjectMap);
-//        JavaZip.zipFile();
     }
 }

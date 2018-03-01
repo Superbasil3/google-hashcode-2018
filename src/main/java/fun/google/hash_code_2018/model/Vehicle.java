@@ -76,6 +76,6 @@ public class Vehicle {
     }
 
     public String getStringToFile() {
-        return vehicleId + " " + rides.stream().map(ride -> String.valueOf(ride.getRideId())).collect(Collectors.joining(" "));
+        return rides.size() + " " + rides.stream().map(ride -> String.valueOf(ride.getRideId())).collect(Collectors.joining(" "));
     }
 }
