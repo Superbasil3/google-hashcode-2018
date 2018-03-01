@@ -17,6 +17,7 @@ public class ReadFile {
         Map<String, Object> holder = new HashMap<>();
 
         List<Path> paths = Files.find(Paths.get(pathFile), 5, (path, attr) -> path.toString().toLowerCase().endsWith(".in"))
+                .sorted((path2,path1) -> path1.getFileName().toString().compareTo(path2.getFileName().toString()))
                 .collect(Collectors.toList());
         for (Path file : paths) {
             String filename = file.getFileName().toString();
@@ -24,18 +25,25 @@ public class ReadFile {
 
             try (Stream<String> stream = Files.lines(Paths.get(file.toString()))) {
 
-                stream.forEach(System.out::println);
+                stream.forEach(line -> {
+                    if (line.contains("TT")) {
 
+                    } else {
 
+                    }
+               });
+
+                holder.put(filename,filename);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            System.out.println((System.currentTimeMillis() - timeStart) / 1000 + "second to parse file " + filename);
+            System.out.println((System.currentTimeMillis() - timeStart) / 1000 + " seconds to parse file " + filename);
 
 
         }
         return holder;
     }
+
 
 }

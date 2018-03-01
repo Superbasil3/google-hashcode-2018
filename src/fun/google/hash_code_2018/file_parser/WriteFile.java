@@ -12,7 +12,7 @@ public class WriteFile {
             for (Map.Entry entry : resultObject.entrySet()) {
                 long timeStart = System.currentTimeMillis();
 
-                PrintWriter fileResult = new PrintWriter(new FileWriter(path + entry.getKey().toString().replace("in","out")));
+                PrintWriter fileResult = new PrintWriter(new FileWriter(path + "out\\" + entry.getKey().toString().replace("in","out")));
 
                 writeAnswerToFile(fileResult, entry.getValue());
                 fileResult.close();

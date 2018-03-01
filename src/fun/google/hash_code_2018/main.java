@@ -9,7 +9,7 @@ public class main {
 
 
     public static void main(String[] args) throws Exception {
-        String pathFoler = "C:\\Users\\tbasilien\\Downloads\\";
+        String pathFoler = "E:\\Workspace\\Toolbox\\hash_code_2018\\ressources\\";
         Map<String, Object> stringObjectMap = ReadFile.getFileFromPath(pathFoler);
 
 
