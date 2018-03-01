@@ -86,6 +86,7 @@ public class Maps {
     }
 
     public void addRide(Ride ride) {
+        ride.setRideId(listRides.size());
         listRides.add(ride);
     }
 

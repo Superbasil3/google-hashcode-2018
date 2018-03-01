@@ -31,6 +31,7 @@ public class ReadFile {
             long timeStart = System.currentTimeMillis();
 
             final Maps maps = new Maps();
+
             try (Stream<String> stream = Files.lines(Paths.get(file.toString()))) {
                 stream.forEach((String line) -> {
                     String[] lineParsed = line.split(" ");

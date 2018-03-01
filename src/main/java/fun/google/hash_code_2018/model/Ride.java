@@ -1,6 +1,7 @@
 package fun.google.hash_code_2018.model;
 
 public class Ride {
+    private int rideId;
     private int startA;
     private int startB;
     private int finishX;
@@ -76,7 +77,7 @@ public class Ride {
     }
 
     public int getRideId() {
-        return 0;
+        return rideId;
     }
 
     public Vehicle getAffectedVehicle() {
@@ -91,5 +92,7 @@ public class Ride {
         return affectedVehicle == null;
     }
 
-
+    public void setRideId(int rideId) {
+        this.rideId = rideId;
+    }
 }
